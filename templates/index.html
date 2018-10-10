@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+
+        
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='bootstrap.css')}}">
+        <link rel="shortcut icon" href="../static/sendgrid.ico" />
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+        <meta charset="UTF-8">
+        <title>
+            Demo MailSender
+        </title>
+    </head>
+
+   <body>
+      <div class="container" style="margin-top: 10%; margin-left: 20%; margin-right: 20%; margin-bottom: 10%">    
+         <form action = "http://localhost:5000/send" method = "post"> 
+            <div>
+               Sender Email:
+               <input type = "text" name = "sender" style="margin-left: 2%; margin-bottom: 2%; width: 460px;" required/>
+            </div>
+            <div>
+               Receipent Email:
+               <input type = "text" name = "receipent" style="margin-left: 2%; margin-bottom: 2%; width: 435px;" required/>
+            </div>
+            <div>
+               Subject:
+               <input type = "text" name = "subject" style="margin-left: 2%; margin-bottom: 2%; width: 500px;" required/>
+            </div>
+               Content of Mail:
+            <div style="width:90%; height:200px; margin-top:50px;">
+               <textarea type="text" name="content" id="content" rows="5" cols="80"></textarea>
+            </div>
+            <div style="margin: 0 auto">
+               <input class="btn btn-outline-primary" type = "submit" value = "submit" />
+            </div> 
+         </form>
+      </div>       
+   </body> 
+</html>
