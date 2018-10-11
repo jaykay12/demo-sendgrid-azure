@@ -1,4 +1,6 @@
-### Setting Up SendGrid & Azure
+## Deploying a simple SendGrid Hello Mail App on Microsoft Azure
+
+### Setting Up SendGrid & Azure Accounts
 
 **Step 1:** Create a SendGrid Free Account from [here](https://sendgrid.com/free?source=sendgrid-python)
 
@@ -16,6 +18,7 @@ curl -i --request POST \
 ```
 
 > **If Result gives *HTTP/1.1 202 Accepted*, You're good to move forward.**
+
 
 ### Setting up the App
 
@@ -38,6 +41,7 @@ source ./sendgrid.env
 **Step 7:** Hit: `127.0.0.1:5000/` from browser & check if the simple mail sending is working or not.
 
 > **If the Mail is Sent suceesfully with *Response.code 202*, You're good to move ahead.**
+
 
 ### Deploying the App on Microsoft Azure
 
@@ -165,4 +169,4 @@ To <LOCAL_GIT_URL>
 
 Check if the Web-App loads & Mail Sending is Success!
 
-> **Woohoo! Congratulations. :octacat: You just got your SendGrid app deployed on Microsoft Azure!.**
+> **Woohoo! Congratulations. You just got your SendGrid app deployed on Microsoft Azure!.**
