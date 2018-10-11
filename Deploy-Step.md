@@ -2,7 +2,7 @@
 
 **Step 1:** Create a SendGrid Free Account from [here](https://sendgrid.com/free?source=sendgrid-python)
 
-**Step 2:** Create a Microsoft Azure Account from [Developers](https://azure.microsoft.com/en-in/free/) & [Students](https://azure.microsoft.com/en-in/free/students/)
+**Step 2:** Create a Microsoft Azure Account: [Free-Tier](https://azure.microsoft.com/en-in/free/) | [Student-Pack](https://azure.microsoft.com/en-in/free/students/)
 
 **Step 3:** Create your SendGrid API Key from [here](https://app.sendgrid.com/settings/api_keys)
 
@@ -15,7 +15,7 @@ curl -i --request POST \
 --data '{"personalizations": [{"to": [{"email": "<RECEIPENT_MAIL>"}]}],"from": {"email": "<SENDER_MAIL>"},"subject": "Is API Key Working","content": [{"type": "text/plain", "value": "Yes, It is!"}]}'
 ```
 
-If Result gives *HTTP/1.1 202 Accepted*, You're good to move forward.
+> **If Result gives *HTTP/1.1 202 Accepted*, You're good to move forward.**
 
 ### Setting up the App
 
@@ -37,16 +37,24 @@ source ./sendgrid.env
 
 **Step 7:** Hit: `127.0.0.1:5000/` from browser & check if the simple mail sending is working or not.
 
-If the Mail is Sent suceesfully with *Response.code 202*, You're good to move ahead.
+> **If the Mail is Sent suceesfully with *Response.code 202*, You're good to move ahead.**
 
 ### Deploying the App on Microsoft Azure
 
 **Step 1:** Open Azure CLI using bash(preferabbly) or PowerShell
 
-**Step 2:** Create a deployment user using `az webapp deployment user set --user-name *<USERNAME>* --password *<PASSWORD>*`
-Make a note of password created, it's used for further deploys
+![azure-cli](https://user-images.githubusercontent.com/13948542/46796235-cb3f8d00-cd69-11e8-9eed-120671532b9d.png)
 
-**Step 3:** Create a Resource-group using `az group create --name *<YOUR_RESOURCE_GROUP_NAME>* --location "Central India"`
+**Step 2:** Create a deployment user using 
+```bash
+az webapp deployment user set --user-name <USERNAME> --password <PASSWORD>
+```
+*Note the Password created at this step, as it is used for further deploys*
+
+**Step 3:** Create a Resource-group using 
+```bash 
+az group create --name <YOUR_RESOURCE_GROUP_NAME> --location "Central India"
+```
 ```json
 {
   "id": "/subscriptions/<SOME_UNIQUE_HASH>/resourceGroups/<YOUR_RESOURCE_GROUP_NAME>",
@@ -60,36 +68,43 @@ Make a note of password created, it's used for further deploys
 }
 ```
 
-You can select the best location for the resource-group using `az appservice list-locations --sku B1 --linux-workers-enabled` and selecting the best location near you.
+You can select the best location for the resource-group using 
+```bash
+az appservice list-locations --sku B1 --linux-workers-enabled
+```
 
-**Step 4:** Create Azure App Service Plan for the deploy using `az appservice plan create --name *<YOUR_SERVICE_PLAN_NAME>* --resource-group *<YOUR_RESOURCE_GROUP_NAME>* --sku B1 --is-linux`
+**Step 4:** Create Azure App Service Plan for the deploy using 
+```bash
+az appservice plan create --name <YOUR_SERVICE_PLAN_NAME> --resource-group <YOUR_RESOURCE_GROUP_NAME> --sku B1 --is-linux
+```
 ```json
 {
   "adminSiteName": null,
   "freeOfferExpirationTime": "2019-04-10T21:25:41.010000",
   "geoRegion": "Central India",
-  
-  "name": "<YOUR_SERVICE_PLAN_NAME>",
-  
+  "...": "...",
+  "name": "<YOUR_SERVICE_PLAN_NAME>",  
   "status": "Ready",
-  
+  "...": "...",
   "type": "Microsoft.Web/serverfarms",
   "workerTierName": null
 }
 ```
 
-**Step 5:** Create your web-app on Azure Portal using `az webapp create --resource-group *<YOUR_RESOURCE_GROUP_NAME>* --plan *<YOUR_SERVICE_PLAN_NAME>* --name *<YOUR_WEBAPP_NAME>* --runtime "PYTHON|3.7" --deployment-local-git`
+**Step 5:** Create your web-app on Azure Portal using 
+```bash
+az webapp create --resource-group <YOUR_RESOURCE_GROUP_NAME> --plan <YOUR_SERVICE_PLAN_NAME> --name <YOUR_WEBAPP_NAME> --runtime "PYTHON|3.7" --deployment-local-git
+```
 ```json
 Local git is configured with url of '<LOCAL_GIT_URL>'
 {
   "availabilityState": "Normal",
-
   "deploymentLocalGitUrl": "<LOCAL_GIT_URL>",
-  
+  "...": "...",
   "hostNames": [
     "<YOUR_WEBAPP_NAME>.azurewebsites.net"
   ],
-  
+  "...": "...",
   "type": "Microsoft.Web/sites",
   "usageState": "Normal"
 }
@@ -141,9 +156,13 @@ To <LOCAL_GIT_URL>
  * [new branch]      master -> master
 ```
 
-*Step 8:* Set the SENDGRID_API_KEY as the Environment variable in Azure Portal from here, Open the <YOUR_WEBAPP_NAME> from dashboard [on] (https://portal.azure.com) and Open Application Settings.
+**Step 8:** Set the SENDGRID_API_KEY as the Environment variable in Azure Portal. Open the Application Settings of the Web-App.
+
+![api_key](https://user-images.githubusercontent.com/13948542/46796244-d2669b00-cd69-11e8-93bb-d7d0ddcb4081.png)
 
 
+**Step 9:** Browse to the deployed application using your web browser and Hit `http://<YOUR_WEBAPP_NAME>.azurewebsites.net`
 
-*Step 9:* Browse to the deployed application using your web browser.
-Hit `http://<YOUR_WEBAPP_NAME>.azurewebsites.net` and if the web app loads & mail sending is successful. Woohoo. You Got your SendGrid App Deployed on Microsoft Azure.
+Check if the Web-App loads & Mail Sending is Success!
+
+> **Woohoo! Congratulations. :octacat: You just got your SendGrid app deployed on Microsoft Azure!.**
